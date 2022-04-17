@@ -52,7 +52,7 @@ function Upload(props) {
         let selectedFile = e.target.files[0];
         if(selectedFile && types.includes(selectedFile.type)){
             setFile(selectedFile);
-            setError(null);
+            setError('');
         } else {
             setFile(null);
             setError("Select a valid image file (png or jpeg)");
@@ -81,7 +81,7 @@ function Upload(props) {
                     <button onClick = {uploadFile}>Upload</button>
                 </div>
             }
-            {(file && upload) && 
+            {(file && upload) &&
             <UploadMessage 
                 file={file}
                 title = {title}

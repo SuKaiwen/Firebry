@@ -7,16 +7,18 @@ function Grid(props) {
 
     const { docs } = useFirestore('images');
 
+    const filteredDocs = docs;
+
     return (
-        <div>
+        <div className = "main-grid">
             <h1>My Moments</h1>
             <div className = "image-grid">
-                {docs && docs.map(doc => {return (
+                {filteredDocs && filteredDocs.map(doc => {return (
                     <div className = "card">
                         <img src={doc.url} alt = {doc.title} />
-                        <p>{doc.title}</p>
+                        <h1>{doc.title}</h1>
                         <p>{doc.desc}</p>
-                        <p>{doc.location}</p>
+                        <p><i class="fa-solid fa-location-dot"></i> {doc.location}</p>
                     </div>
                 )})
                 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 
 import {storages, firestores, timestamp} from '../Firebase/config';
 
@@ -8,7 +8,6 @@ const useStorage = (file, title, desc, location) => {
     const [url, setUrl] = useState(null);
 
     useEffect(() => {
-
         // Create reference
         const storageRef = storages.ref(file.name);
         const collectionRef = firestores.collection('images');
@@ -21,11 +20,10 @@ const useStorage = (file, title, desc, location) => {
         }, async () => {
             const url = await storageRef.getDownloadURL();
             const time = timestamp();
-            console.log("updated");
-            collectionRef.add({url, time, title, desc, location});
+            await collectionRef.add({url, time, title, desc, location});
             setUrl(url);
         });
-    }, [file]);
+    }, [file, title, desc, location]);
 
     return {progress, url, error}
 }

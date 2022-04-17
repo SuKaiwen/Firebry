@@ -1,17 +1,70 @@
+.main-grid {
+    margin-top: 150px;
+}
+
 .image-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: 0 20%;
+    justify-content: space-between;
+    margin-bottom: 200px;
 }
 
 .image-grid .card {
     display: flex;
     flex-direction: column;
+    width: 32%;
+    margin-top: 1.5%;
     text-align: left;
     box-sizing: border-box;
     padding: 20px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: 0.3s;
+}
+
+.image-grid .card h1 {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.image-grid .card p {
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+.image-grid .card:hover {
+    box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 29px 0px;
 }
 
 .image-grid img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (width < 1600px) {
+    .image-grid {
+        width: 75%;
+        margin: 0 12.5%;
+        margin-bottom: 200px;
+    }
+}
+
+@media (width < 1268px){
+    .image-grid {
+        width: 90%;
+        margin: 0 5%;
+        margin-bottom: 200px;
+    }
+
+    .image-grid .card {
+        width: 48%;
+    }
+}
+
+@media (width < 768px) {
+    .image-grid .card {
+        width: 100%;
+    }
 }

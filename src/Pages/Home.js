@@ -9,8 +9,10 @@ function Home(props) {
     return (
         <div className = 'page-container'>
             <div className = "center-text">
-                <h1>Upload cool moments!</h1>
-                <Upload />
+                <div className = "banner overlay">
+                    <h1>Upload cool moments!</h1>
+                    <Upload />
+                </div>
                 <Grid />
             </div>
         </div>

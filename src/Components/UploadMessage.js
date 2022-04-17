@@ -5,6 +5,7 @@ import useStorage from '../Hooks/useStorage';
 const UploadMessage = ({file, title, desc, location, setFile, setTitle, setDesc, setLocation}) => {
 
     const {progress, url, error} = useStorage(file, title, desc, location); 
+    console.log("hello")
 
     useEffect(() => {
         if (url) {
@@ -17,6 +18,7 @@ const UploadMessage = ({file, title, desc, location, setFile, setTitle, setDesc,
 
     return (
         <div>
+            <p>{progress}%</p>
             {error && <p>Something went wrong!</p>}
             {!error && <p>Sucessfully uploaded: {file.name}</p>}
         </div>
