@@ -1,0 +1,17 @@
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.image-grid .card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.image-grid img {
+    width: 100%;
+}

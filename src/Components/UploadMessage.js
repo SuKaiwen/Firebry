@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect }  from 'react';
 
 import useStorage from '../Hooks/useStorage';
 
-function UploadMessage(props) {
+const UploadMessage = ({file, title, desc, location, setFile, setTitle, setDesc, setLocation}) => {
 
-    const { progress, url } = useStorage(props.file); 
+    const {progress, url, error} = useStorage(file, title, desc, location); 
+
+    useEffect(() => {
+        if (url) {
+          setFile(null);
+          setTitle(null);
+          setDesc(null);
+          setLocation(null);
+        }
+    }, [url, setFile]);
 
     return (
         <div>
-            <p>Sucessfully uploaded: {props.file.name}</p>
+            {error && <p>Something went wrong!</p>}
+            {!error && <p>Sucessfully uploaded: {file.name}</p>}
         </div>
     );
 }
