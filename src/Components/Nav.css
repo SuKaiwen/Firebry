@@ -10,6 +10,10 @@
     flex-wrap: wrap;
 }
 
+.nav .fire {
+    color: orange;
+}
+
 .nav-content {
     display: flex;
     flex-direction: row;

@@ -1,13 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-
 import Nav from './Components/Nav';
+import Home from './Pages/Home';
+
+import './Global.css';
 
 function App() {
   return (
     <div>
       <Nav />
-      <h1>Online Forum</h1>
+      <Home />
     </div>
   );
 }

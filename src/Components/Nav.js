@@ -18,7 +18,7 @@ function Nav(props) {
 
     return (
         <div className = "nav">
-            <h1>Firebry</h1>
+            <h1><i class="fa-solid fa-fire fire"></i> Firebry</h1>
             <div className = "nav-content">
                 <p>Categories</p>
                 <p>Settings</p>
