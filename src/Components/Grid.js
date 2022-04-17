@@ -10,12 +10,17 @@ function Grid(props) {
     const filteredDocs = docs;
 
     return (
-        <div className = "main-grid">
+        <div className = "main-grid center-text">
             <h1>My Moments</h1>
             <div className = "image-grid">
                 {filteredDocs && filteredDocs.map(doc => {return (
                     <div className = "card">
-                        <img src={doc.url} alt = {doc.title} />
+                        <div onClick={() => 
+                            {props.setModalImage(doc.url);
+                            props.setModalTitle(doc.title);}
+                        }>
+                            <img src={doc.url} alt = {doc.title} />
+                        </div>
                         <h1>{doc.title}</h1>
                         <p>{doc.desc}</p>
                         <p><i class="fa-solid fa-location-dot"></i> {doc.location}</p>

@@ -13,7 +13,6 @@ function Home(props) {
                     <h1>Upload cool moments!</h1>
                     <Upload />
                 </div>
-                <Grid />
             </div>
         </div>
     );
