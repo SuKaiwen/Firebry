@@ -1,0 +1,12 @@
+.upload-btn {
+    border: none;
+    background-color: orange;
+    padding: 12px 13.5px;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.upload-btn i {
+    width: 20px;
+    height: 20px;
+}

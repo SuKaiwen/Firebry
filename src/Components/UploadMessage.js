@@ -4,7 +4,9 @@ import useStorage from '../Hooks/useStorage';
 
 const UploadMessage = ({file, title, desc, location, setFile, setTitle, setDesc, setLocation}) => {
 
-    const {progress, url, error} = useStorage(file, title, desc, location); 
+    const storageObj = {file, title, desc, location}
+
+    const {progress, url, error} = useStorage(storageObj, "images"); 
     console.log("hello")
 
     useEffect(() => {

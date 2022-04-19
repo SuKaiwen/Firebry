@@ -6,6 +6,49 @@
     flex-direction: column;
 }
 
+.login-container {
+    width: 100%;
+    height: calc(100vh - 73px);
+    box-sizing: border-box;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.login-card {
+    width: 500px;
+    box-sizing: border-box;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 20px;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.login-card input {
+    padding: 5px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.login-card p {
+    margin: 2;
+}
+
+.login-card .login-btn {
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 30px;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 10px;
+}
+
 .banner {
     background-image: url('./Images/forest.jpg');
     background-size: cover;
@@ -25,4 +68,11 @@
 
 .center-text {
     text-align: center;
+}
+
+@media (width < 768px) {
+    .login-card {
+        width: 90%;
+        padding: 20px 30px;
+    }
 }

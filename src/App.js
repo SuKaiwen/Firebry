@@ -1,34 +1,37 @@
 import React, {useState} from 'react';
 
+import './Global.css';
+
 import Nav from './Components/Nav';
 import Home from './Pages/Home';
-import Grid from './Components/Grid';
-import Modal from './Components/Modal';
+import Profile from './Pages/Profile';
+import Signup from './Pages/Signup';
 
-import './Global.css';
+import { Routes ,Route, BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
 
-  const [modalImage, setModalImage] = useState(null);
-  const [modalTitle, setModalTitle] = useState(null);
+  // Test if user is logged in
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [currUser, setCurrUser] = useState("");
 
   return (
-    <div>
-      <Nav />
-      <Home/>
-      <Grid 
-        	setModalImage = {setModalImage} 
-          setModalTitle = {setModalTitle}
+    <Router>
+      <Nav 
+          currUser = {currUser}
       />
-      {modalImage &&
-        <Modal 
-          modalImage = {modalImage} 
-          setModalImage = {setModalImage}
-          modalTitle = {modalTitle}
-          setModalTitle = {setModalTitle}
-        />
-      }
-    </div>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/signup' element={<Signup/>} />
+        <Route path='/Profile/' element={
+        <Profile 
+          loggedIn = {loggedIn} 
+          setLoggedIn = {setLoggedIn}
+          currUser = {currUser}
+          setCurrUser = {setCurrUser}
+        />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -14,6 +14,11 @@
     z-index: 99;
 }
 
+.nav a {
+    text-decoration: none;
+    color: inherit !important;
+}
+
 .nav .fire {
     color: orange;
 }
