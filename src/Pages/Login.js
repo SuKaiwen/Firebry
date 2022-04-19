@@ -32,7 +32,7 @@ function Login(props) {
             <div className = "login-card">   
                 <form onSubmit={handleSubmit}>
                     <h1>Login to continue</h1>
-                    <p>Username</p>
+                    <p>Email</p>
                     <input type = "text" ref={emailRef} />
                     <p>Password</p>
                     <input type = "text" ref={passwordRef} />

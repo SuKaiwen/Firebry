@@ -54,7 +54,9 @@ function Nav(props) {
             <div className = "nav-content">
                 {currentUser ?
                     <>
-                    <p>Settings</p>
+                    <Link to="/setting">
+                        <p>Settings</p>
+                    </Link>
                     <Link to="/profile/">
                         <p>My Profile <i class="fas fa-circle-user"></i></p>
                     </Link>

@@ -8,6 +8,7 @@ import Profile from './Pages/Profile';
 import Signup from './Pages/Signup';
 import Search from './Pages/Search';
 import Login from './Pages/Login';
+import Setting from './Pages/Setting';
 
 import { Routes ,Route, BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthContext';
@@ -28,6 +29,7 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/home' element={<Home />} />
           <Route path='/signup' element={<Signup/>} />
+          <Route path='/setting' element={<Setting/>} />
           <Route path='/search' element={<Search/>} />
           <Route path='/profile/' element={
           <Profile 

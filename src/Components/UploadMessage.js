@@ -2,9 +2,9 @@ import React, { useEffect }  from 'react';
 
 import useStorage from '../Hooks/useStorage';
 
-const UploadMessage = ({file, title, desc, location, setFile, setTitle, setDesc, setLocation}) => {
+const UploadMessage = ({file, title, desc, location, setFile, setTitle, setDesc, setLocation, email}) => {
 
-    const storageObj = {file, title, desc, location}
+    const storageObj = {file, title, desc, location, email}
 
     const {progress, url, error} = useStorage(storageObj, "images"); 
 

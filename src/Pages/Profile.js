@@ -70,7 +70,6 @@ function Profile(props) {
                 <h1>Please login to continue...</h1>
                 <Link to="/">Login here</Link>
             </div>
-
             } 
         </div>
     );

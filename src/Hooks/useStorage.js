@@ -12,9 +12,9 @@ const useStorage = (obj, targetCollection) => {
     let title = obj.title;
     let desc = obj.desc;
     let location = obj.location;
+    let email = obj.email;
 
     // For users
-    let email = obj.email;
     let username = obj.username;
     let firstname = obj.fname;
     let lastname = obj.lname;
@@ -38,7 +38,7 @@ const useStorage = (obj, targetCollection) => {
                 }, async () => {
                     const url = await storageRef.getDownloadURL();
                     const time = timestamp();
-                    await collectionRef.add({url, time, title, desc, location});
+                    await collectionRef.add({url, time, title, desc, location, email});
                     setUrl(url);
                 });
                 break;

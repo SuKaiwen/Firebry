@@ -1,13 +1,17 @@
 import React from 'react';
 import useFirestore from '../Hooks/useFirestore';
 
+import { useAuth } from '../Context/AuthContext';
+
 import "./Grid.css";
 
 function Grid(props) {
 
     const { docs } = useFirestore('images');
 
-    const filteredDocs = docs;
+    const {currentUser} = useAuth();
+
+    const filteredDocs = docs.filter(doc => (doc.email === currentUser.email));
 
     return (
         <div className = "main-grid center-text">

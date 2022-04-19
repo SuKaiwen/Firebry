@@ -4,6 +4,8 @@ import "./Upload.css";
 
 import UploadMessage from './UploadMessage';
 
+import { useAuth } from '../Context/AuthContext';
+
 function Upload(props) {
 
     const [uploadStory, setUploadStory] = useState(false);
@@ -15,6 +17,8 @@ function Upload(props) {
     const [location, setLocation] = useState(null);
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
+
+    const {currentUser} = useAuth();
 
     // For validation
     const types = ['image/png', 'image/jpeg'];
@@ -91,6 +95,7 @@ function Upload(props) {
                 setTitle = {setTitle}
                 setDesc = {setDesc}
                 setLocation = {setLocation}
+                email = {currentUser.email}
             />}
             
         </div>
