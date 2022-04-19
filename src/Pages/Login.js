@@ -28,7 +28,7 @@ function Login(props) {
     }
 
     return (
-        <div className = "login-container">
+        <div className = "login-container mountain">
             <div className = "login-card">   
                 <form onSubmit={handleSubmit}>
                     <h1>Login to continue</h1>

@@ -44,7 +44,7 @@ function Setting(props) {
     return (
         <>
             {currentUser ?
-                <div className = "login-container">
+                <div className = "login-container mountain">
                     <h1>Update settings</h1>
                         <div className = 'login-card'>
                             <p>I wish to update settings for: {currentUser.email}</p>

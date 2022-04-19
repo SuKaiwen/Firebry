@@ -46,7 +46,7 @@ function Signup(props) {
     }
 
     return (
-        <div className = "login-container">
+        <div className = "login-container mountain">
             <div className = "login-card">
                 <h1>Sign up to Firebry</h1>
                 
