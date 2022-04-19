@@ -1,0 +1,18 @@
+.search-container{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px 20%;
+}
+
+.search p, .search i{
+    font-size: 30px;
+}
+
+.search button {
+    padding: 8px 16px;
+    font-size: 18px;
+    color: white;
+    background-color: blue;
+    border: none;
+    border-radius: 10px;
+}

@@ -7,7 +7,6 @@ const UploadMessage = ({file, title, desc, location, setFile, setTitle, setDesc,
     const storageObj = {file, title, desc, location}
 
     const {progress, url, error} = useStorage(storageObj, "images"); 
-    console.log("hello")
 
     useEffect(() => {
         if (url) {

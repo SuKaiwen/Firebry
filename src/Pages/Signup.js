@@ -1,73 +1,72 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import useStorage from '../Hooks/useStorage';
 import SignupMessage from './SignupMessage';
+import { useAuth } from '../Context/AuthContext';
 
 function Signup(props) {
 
-    // User details
-    const [email, setEmail] = useState(null);
-    const [username ,setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [fname, setFname] = useState(null);
-    const [lname, setLname] = useState(null);
-
     const [valid, setValid] = useState(false);
 
-    // Submit
-    const handleSubmit = () => {
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const passwordConfirmRef = useRef()
+    const fnameRef = useRef()
+    const lnameRef = useRef()
+    const usernameRef = useRef()
 
-        // Check invalid
-        if(email === "" || username === "" || password === "" || fname === "" || lname === ""){
-            return;
-        }
-        if(validateEmail(email)){
-            setValid(true);
-        }   
-        return;
-        
-    }
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    // Check valid email
-    function validateEmail(mail) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)){
-            return true;
+    const {signup} = useAuth();
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+    
+        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+          return setError("Passwords do not match")
         }
-        return false;
+    
+        try {
+          setError("")
+          setLoading(true)
+          
+          console.log(emailRef.current.value);
+          console.log(passwordRef.current.value);
+          await signup(emailRef.current.value, passwordRef.current.value)
+          setValid(true);
+          navigate('/profile');
+        } catch {
+          setError("Failed to create an account")
+        }
+    
+        setLoading(false)
     }
 
     return (
         <div className = "login-container">
             <div className = "login-card">
                 <h1>Sign up to Firebry</h1>
-                {!valid ? 
-                <>
-                    <p>Already have an account? <Link to = "/profie">Log in</Link></p>
+                
+                <form onSubmit={handleSubmit}>
+                    <p>Already have an account? <Link to = "/">Log in</Link></p>
+                    <p>{error}</p>
                     <p>Email</p>
-                    <input type = "text" onChange={(e) => setEmail(e.target.value)}/>
+                    <input type = "text" ref={emailRef} />
                     <p>Username</p>
-                    <input type = "text" onChange={(e) => setUsername(e.target.value)}/>
+                    <input type = "text" ref={usernameRef} />
                     <p>Password</p>
-                    <input type = "text" onChange={(e) => setPassword(e.target.value)}/>
+                    <input type = "text" ref={passwordRef} />
+                    <p>Confirm Password</p>
+                    <input type = "text" ref={passwordConfirmRef} />
                     <p>First Name</p>
-                    <input type = "text" onChange={(e) => setFname(e.target.value)}/>
+                    <input type = "text" ref={fnameRef} />
                     <p>Last Name</p>
-                    <input type = "text" onChange={(e) => setLname(e.target.value)}/>
-                    <button className = "login-btn" onClick={() => handleSubmit()}>Sign Up</button>
-                </>:
-                <SignupMessage 
-                    email = {email}
-                    username = {username}
-                    fname = {fname}
-                    lname = {lname}
-                    password = {password}
-                    setEmail = {setEmail}
-                    setUsername = {setUsername}
-                    setFname = {setFname}
-                    setLname = {setLname}
-                    setPassword = {setPassword}
-                />}
+                    <input type = "text" ref={lnameRef} />
+                    <button className = "login-btn" onClick = {handleSubmit}>Sign Up</button>
+                </form>
             </div>
         </div>
     );

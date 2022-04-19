@@ -45,8 +45,10 @@ const useStorage = (obj, targetCollection) => {
             case "users":
                 // Create new user and store user to the DB
                 collectionRef = firestores.collection('users');
+                let followers = [];
+                let followed = [];
                 const time = timestamp();
-                collectionRef.add({email, username, firstname, lastname, password, time});
+                collectionRef.add({email, username, firstname, lastname, time, followers, followed});
                 setUrl("Finished Making");
                 break;
         }

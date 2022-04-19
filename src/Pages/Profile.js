@@ -1,41 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
 import Upload from '../Components/Upload';
 import Grid from '../Components/Grid';
 import Modal from '../Components/Modal';
-
 import { Link } from 'react-router-dom';
+
 import useFirestore from '../Hooks/useFirestore';
+
+import { useAuth } from '../Context/AuthContext';
 
 function Profile(props) {
     const [modalImage, setModalImage] = useState(null);
     const [modalTitle, setModalTitle] = useState(null);
 
+    // Details
+    const [fname, setFname] = useState();
+    const [lname, setLname] = useState();
+    const [username, setUsername] = useState();
+
     // DB of users
     const { docs } = useFirestore('users');
 
-    // User details
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const { currentUser} = useAuth();
 
-    const checkCredentials = (username, password, targetName, targetPass) => {
-        if(username == targetName && password == targetPass){
+    useEffect(() => {
+        if(currentUser){
+            // let myDetails = docs.find(user => matchUser(user));
+            // setFname(myDetails.firstname);
+            // setLname(myDetails.lastname);
+            // setUsername(myDetails.username);
+        }
+    })
+
+    const matchUser = (user) => {
+        if(user.email === currentUser.email){
             return true;
         }
         return false;
     }
 
-    const login = () => {
-        const currentUser = docs.find(user => checkCredentials(username, password, user.username, user.password));
-        if(currentUser){
-            props.setLoggedIn(true);
-            props.setCurrUser(currentUser);
-        }
-    }
-
     return (
         <div className = 'page-container'>
-            {props.loggedIn ? 
+            {currentUser ? 
+            
             <div>
                 <div className = "center-text">
                     <div className = "banner overlay">
@@ -43,7 +50,9 @@ function Profile(props) {
                         <Upload />
                     </div>
                 </div>
-                
+                <div className = "center-text">
+                    <h1>Welcome {currentUser.email}</h1>
+                </div>
                 <Grid 
                     setModalImage = {setModalImage} 
                     setModalTitle = {setModalTitle}
@@ -56,20 +65,13 @@ function Profile(props) {
                     setModalTitle = {setModalTitle}
                     />
                 }
-            </div> : <div className = "login-container">
-                <div className = "login-card">
-                    <h1>Login to continue</h1>
-                    <p>Username</p>
-                    <input type = "text" onChange={(e) => setUsername(e.target.value)} />
-                    <p>Password</p>
-                    <input type = "text" onChange={(e) => setPassword(e.target.value)} />
-                    <button className = "login-btn" onClick = {() => login()}>Login</button>
-                    <p>Don't have an account? <Link to="/signup">Make one for free!</Link></p>
-                </div>
+            </div>:
+            <div className = "login-container">
+                <h1>Please login to continue...</h1>
+                <Link to="/">Login here</Link>
             </div>
-            
-            }
-            
+
+            } 
         </div>
     );
 }

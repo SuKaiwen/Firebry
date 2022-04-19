@@ -14,6 +14,29 @@
     z-index: 99;
 }
 
+.nav .logout-btn {
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    background-color: orange;
+    height: 40px;
+}
+
+.logout-btn p {
+    margin: 0;
+}
+
+.nav input {
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 10px;
+    height: 20px;
+    border: 1px solid gray;
+    margin-left: 15px;
+}
+
 .nav a {
     text-decoration: none;
     color: inherit !important;
@@ -26,6 +49,7 @@
 .nav-content {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .nav-content > * {
@@ -38,7 +62,7 @@
 }
 
 .nav p {
-    font-size: 18x;
+    font-size: 18px;
 }
 
 .nav .hamburger {
@@ -55,6 +79,20 @@
 .menu {
     width: 100%;
     display: none;
+}
+
+@media (width < 1268px) {
+    .nav {
+        padding: 0 5%;
+    }
+
+    .nav p {
+        font-size: 15px;
+    }
+
+    .nav input {
+        font-size: 15px;
+    }
 }
 
 @media (width < 768px) {
@@ -76,5 +114,10 @@
 
     .nav {
         padding: 0 5%;
+    }
+
+    .logout-btn {
+        margin-bottom: 20px;
+        padding: 0;
     }
 }

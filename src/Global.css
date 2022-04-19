@@ -6,6 +6,16 @@
     flex-direction: column;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.row > * {
+    margin-right: 10px;
+}
+
 .login-container {
     width: 100%;
     height: calc(100vh - 73px);
@@ -17,7 +27,11 @@
     align-items: center;
 }
 
-.login-card {
+.login-container i {
+    font-size: 60px;
+}
+
+.login-card{
     width: 500px;
     box-sizing: border-box;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -28,11 +42,20 @@
     text-align: left;
 }
 
-.login-card input {
+.login-card .form {
+    width: inherit;
+    padding: inherit;
+    display: flex;
+    flex-direction: inherit;
+    width: 100%;
+}
+
+.login-card form input {
     padding: 5px;
     font-size: 18px;
     border-radius: 10px;
     border: 1px solid gray;
+    width: 100%;
 }
 
 .login-card p {
