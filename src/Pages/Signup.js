@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import SignupMessage from './SignupMessage';
 import { useAuth } from '../Context/AuthContext';
 
+import './Signup.css';
+
 function Signup(props) {
 
     const [valid, setValid] = useState(false);
@@ -22,27 +24,60 @@ function Signup(props) {
 
     const {signup} = useAuth();
 
+    function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
     
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-          return setError("Passwords do not match")
+          return setError("Passwords do not match");
         }
     
         try {
-          setError("")
-          setLoading(true)
+          setError("");
+          setLoading(true);
+
+          if(!emailRef.current.value && !passwordRef.current.value){
+            throw "Please enter a valid email and password"
+          }
           
-          console.log(emailRef.current.value);
-          console.log(passwordRef.current.value);
+          if(!emailRef.current.value){
+            throw "Please enter a valid email";
+          }
+
+          if(!passwordRef.current.value){
+            throw "Please enter a valid password";
+          }
+
+          if(!validateEmail(emailRef.current.value)){
+            throw "Please enter email with valid format";
+          }
+
+          if(passwordRef.current.value.length < 6){
+            throw "Passwords must be at least 6 characters";
+          }
+
           await signup(emailRef.current.value, passwordRef.current.value)
           setValid(true);
           navigate('/profile');
-        } catch {
-          setError("Failed to create an account")
+        } catch (err){
+          setError(err);
         }
     
-        setLoading(false)
+        setLoading(false);
+    }
+
+    function togglePassword() {
+      var x = document.getElementById("passwordc");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
     }
 
     return (
@@ -51,21 +86,30 @@ function Signup(props) {
                 <h1>Sign up to Firebry</h1>
                 
                 <form onSubmit={handleSubmit}>
-                    <p>Already have an account? <Link to = "/">Log in</Link></p>
-                    <p>{error}</p>
+                    {error &&
+                      <div className = 'error-box'>
+                        <p>{error}</p>
+                      </div>
+                    }
                     <p>Email</p>
                     <input type = "text" ref={emailRef} />
                     <p>Username</p>
                     <input type = "text" ref={usernameRef} />
                     <p>Password</p>
-                    <input type = "text" ref={passwordRef} />
+                    <input id = "passwordc" type = "password" ref={passwordRef} />
                     <p>Confirm Password</p>
-                    <input type = "text" ref={passwordConfirmRef} />
+                    <input type = "password" ref={passwordConfirmRef} />
+                    <div className = 'password-row'>
+                      <p>Show Password</p>
+                      <input className = "check-box" type="checkbox" onClick={() => togglePassword()} />
+                    </div>
                     <p>First Name</p>
                     <input type = "text" ref={fnameRef} />
                     <p>Last Name</p>
                     <input type = "text" ref={lnameRef} />
+                    
                     <button className = "login-btn" onClick = {handleSubmit}>Sign Up</button>
+                    <p>Already have an account? <Link to = "/">Log in</Link></p>
                 </form>
             </div>
         </div>

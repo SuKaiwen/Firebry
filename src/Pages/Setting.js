@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import { Link } from 'react-router-dom';
 
+import './Signup.css';
+
 function Setting(props) {
 
     const {currentUser} = useAuth();
@@ -27,7 +29,9 @@ function Setting(props) {
         const promises = [];
         setError("");
 
-        if (newPasswordRef.current.value) {
+        if (newPasswordRef.current.value.length < 6) {
+            return setError("Passwords must be 6 characters or more");
+        }else{
           promises.push(updatePassword(newPasswordRef.current.value));
         }
     
@@ -41,6 +45,15 @@ function Setting(props) {
           });
     }
 
+    function togglePassword() {
+        var x = document.getElementById("passwordb");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+
     return (
         <>
             {currentUser ?
@@ -49,13 +62,17 @@ function Setting(props) {
                         <div className = 'login-card'>
                             <p>I wish to update settings for: {currentUser.email}</p>
                             <div className = "error-box">
-                                {error && <p>Error: {error}</p>}
+                                {error && <p>{error}</p>}
                             </div>
                             <form onSubmit={handleSubmit}>
                                 <p>New Password</p>
-                                <input type = "text" ref={newPasswordRef} />
+                                <input id = "passwordb" type = "password" ref={newPasswordRef} />
                                 <p>Confirm New Password</p>
-                                <input type = "text" ref={newPasswordConfirmRef} />
+                                <input type = "password" ref={newPasswordConfirmRef} />
+                                <div className = 'password-row'>
+                                    <p>Show Password</p>
+                                    <input className = "check-box" type="checkbox" onClick={() => togglePassword()} />
+                                </div>
                                 <button className = "login-btn" onClick={handleSubmit}>Submit</button>
                             </form>
                         </div>
